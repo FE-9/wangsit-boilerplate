@@ -29,6 +29,11 @@ const routes: Readonly<RouteRecordRaw[]> = [
     component: (): Promise<Component> =>
       import('@/layout/AssetDetailsLayout.vue'),
     children: [
+      /*
+       * TODO: Ini childnya cuma satu, jadi jangan pake children, langsung aja taruh id di path
+       * Jadi pathnya /detail-assets/:id
+       * Catatan tambahan, biasanya kalau di proyek, ID ditaruh sebelum path, jadi /:id/detail-assets
+       */
       {
         path: ':id',
         name: 'DetailAssets',

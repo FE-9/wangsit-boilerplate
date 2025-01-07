@@ -7,6 +7,7 @@ import response from './data/response.json';
 
 const item = ref<Asset | null>(null);
 const route = useRoute();
+// TODO: `id` sama `data` dikasih type
 const { id } = route.params;
 
 const { data } = response.data;

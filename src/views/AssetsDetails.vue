@@ -5,6 +5,7 @@ import AssetsDetails from '@/components/modules/Assets/AssetsDetail.vue';
 
 const { setBreadcrumbs } = useBreadcrumbStore();
 
+// TODO: Ubah jadi constant
 const menus = shallowRef([
   {
     name: 'Asset Detail',

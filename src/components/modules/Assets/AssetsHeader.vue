@@ -14,6 +14,11 @@ import {
 import { FormValue } from 'wangsvue/components/form/Form.vue.d';
 
 const showForm = shallowRef<boolean>(false);
+/*
+ * TODO: formValues pake shallowRef aja, soalnya properti dalam formValues enggak diubah, cuma formValues itu sendiri yang diubah.
+ * Ini penting karena shallowRef bakal bikin performanya lebih bagus.
+ * Referensi: Coding Style Guide bagian 6.3.3
+ */
 const formValues = ref<FormValue>();
 
 const apply = (e: {
@@ -26,6 +31,7 @@ const apply = (e: {
 
 <template>
   <div class="flex justify-end gap-4" data-wv-section="tabletoolbars">
+    <!-- TODO: Table name masih user-list, ubah jadi kayak di file Assets.vue -->
     <ButtonSearch table-name="user-list" />
     <ButtonFilter table-name="user-list" />
     <button type="button">
@@ -38,6 +44,7 @@ const apply = (e: {
     </button>
     <Button @click="showForm = true" label="+ Register" severity="secondary" />
   </div>
+  <!-- TODO: DialogForm dipindah ke file baru di folder sama, namanya AssetsForm.vue -->
   <DialogForm
     v-model:visible="showForm"
     :buttons-template="['submit', 'cancel', 'clear']"
@@ -54,6 +61,12 @@ const apply = (e: {
   >
     <template #fields>
       <div class="grid grid-cols-2 gap-4">
+        <!-- TODO: Options dropdown jangan taruh di template, buat constant aja.
+        Referensi: Coding Style Guide bagian 6.2.4
+         
+        Dan juga, daripada di tiap dropdown ada properti option-label sama option-value,
+        pake `v-bind="DropdownProps"` aja, terus buat constant DropdownProps yang isinya
+        properti yang dipake semua Dropdown -->
         <Dropdown
           :options="[
             { label: 'Room 402', value: 'Room 402' },

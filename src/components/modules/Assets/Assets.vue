@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/*
+ * TODO: Ubah nama file ini jadi AssetsTable.vue
+ * Referensi: Coding Style Guide bagian 6.1.1
+ */
 import { computed, shallowRef, ref } from 'vue';
 import { Badge, DataTable } from 'wangsvue';
 
@@ -21,6 +25,7 @@ const selectedAsset = shallowRef<Asset>();
 const showForm = shallowRef<boolean>(false);
 const formValues = ref<FormValue>();
 
+// TODO: Ubah ini jadi computed (ingatin aku untuk jelasin beda computed sama constant)
 const singleAction: MenuItem[] = [
   {
     label: 'Detail Asset',
@@ -38,6 +43,7 @@ const singleAction: MenuItem[] = [
   },
 ];
 
+// TODO: Ubah ini jadi constant
 const tableColumns = computed<TableColumn[]>(() => {
   return [
     {
