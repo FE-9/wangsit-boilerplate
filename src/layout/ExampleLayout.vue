@@ -15,6 +15,10 @@ const tabMenus = ref<MenuItem[]>([
     label: 'Another Page',
     route: 'another-page',
   },
+  {
+    label: 'Assets',
+    route: 'assets',
+  },
 ]);
 </script>
 
