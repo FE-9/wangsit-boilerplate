@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useBreadcrumbStore } from '@/store';
-import { BreadcrumbMenu } from 'wangsvue/components/breadcrumb/Breadcrumb.vue';
+import AssetsTable from '@/components/modules/Assets/AssetsTable.vue';
 import { TabMenu } from 'wangsvue';
 import { MenuItem } from 'wangsvue/components/menuitem';
+
+onMounted(() => {
+  setBreadcrumbs(menus);
+});
 
 const { setBreadcrumbs } = useBreadcrumbStore();
 
@@ -22,20 +26,16 @@ const tabMenus = ref<MenuItem[]>([
   },
 ]);
 
-const menus: BreadcrumbMenu[] = [
+const menus = [
   {
     name: 'Wangs',
   },
   {
-    name: 'Another Page',
+    name: 'Assets',
   },
 ];
-
-onMounted(() => {
-  setBreadcrumbs(menus);
-});
 </script>
 <template>
   <TabMenu :menu="tabMenus" />
-  <h1>Hello from Another Tab</h1>
+  <AssetsTable />
 </template>

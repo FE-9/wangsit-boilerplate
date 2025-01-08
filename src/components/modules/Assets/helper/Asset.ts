@@ -1,59 +1,28 @@
-interface Name {
+export interface Asset {
   _id: string;
-  nameWithSequence: string;
-  name: string;
-  key: number;
-  aliasCode: string;
-  aliasName?: string;
+  name: {
+    nameWithSequence: string;
+    aliasName?: string;
+  };
+  category: string;
+  group: string;
+  brand: string;
+  model: string;
+  imageUrl: string;
+  lastModifier: {
+    _id: string;
+    fullName: string;
+    updatedAt?: string; // ISO date string
+  };
 }
 
-interface Category {
-  _id: string;
-  name: string;
-  key: number;
-  fullPath?: string;
+export interface AssetList {
+  totalRecords: number;
+  data: Asset[];
 }
 
-interface Group {
-  _id: string;
-  name: string;
-  key: number;
-  fullPath?: string;
-}
-
-interface Brand {
-  _id: string;
-  key: number;
-  name: string;
-  fullPath?: string;
-}
-
-interface Model {
-  _id: string;
-  name: string;
-  key: number;
-  fullPath?: string;
-}
-
-interface LastModifier {
-  _id: string;
-  fullName: string;
-  key: number;
-}
-
-export default interface Asset {
-  _id: string;
-  name: Name;
-  isDefault?: boolean;
-  category: Category;
-  group: Group;
-  brand: Brand;
-  model: Model;
-  policy: string;
-  isTransactionable: boolean;
-  isActive: boolean;
-  lastModifier?: LastModifier | null;
-  status: string;
-  isSelfService: boolean;
-  sequence: number;
+export interface AssetApiResponse {
+  status: number;
+  message: string;
+  data: AssetList;
 }
