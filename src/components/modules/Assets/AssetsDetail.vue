@@ -11,6 +11,14 @@ onMounted(() => {
 
 const route = useRoute();
 
+/*
+ * TODO: `item` pake shallowRef, karena properti dalam `item` gak akan berubah,
+ * tapi `item` itu sendiri yang diubah.
+ *
+ * Dan juga, jangan pake null, pake undefined aja, berarti `item` itu belum ada value.
+ * Kalau null itu berarti `item` punya value null. Nanti pas refer ke `item`,
+ * ditambahin optional chaining (misalnya item?.group).
+ */
 const item = ref<Asset | null>(null);
 
 const formattedDate = computed(() => {
@@ -44,6 +52,10 @@ const formatISODate = (date: string | Date): string =>
       <div>
         <span class="font-bold text-xs">General Information</span>
         <div class="grid grid-cols-2 auto-cols-auto w-max">
+          <!-- TODO: Ini kan pake div berulang-ulang, pake v-for aja, yang
+           loop propreti dalam objek `item`.
+           Biar cuma di div pertama yang ada class mr-28, pake kayak gini:
+           :class="{ 'mr-28': index === 0 }" -->
           <div class="mr-28">
             <div class="flex flex-col">
               <span class="text-gray-500 text-[9px]">Brand</span>
