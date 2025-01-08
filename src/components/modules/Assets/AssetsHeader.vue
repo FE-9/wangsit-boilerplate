@@ -10,6 +10,7 @@ defineEmits(['showFormRegister']);
     <ButtonFilter table-name="assets-list" />
     <button type="button">
       <Icon
+        class="w-6 h-6 text-grayscale-900 shrink-0"
         icon="file-history"
         info="Changelog"
         severity="secondary"

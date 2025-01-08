@@ -6,15 +6,13 @@
     "data": [
       {
         "_id": "663ce742f0667d5266d83d66",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 4",
-          "aliasName": "AC Portable Indoor"
-        },
-        "category": "Category new",
-        "group": "Testing Edited",
-        "brand": "kaos kutang",
-        "model": "kaos",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "name": "AC Portable Indoor",
+        "aliasName": "AC Portable Indoor",
+        "category": "Elektronik",
+        "group": "Room 402",
+        "brand": "Samsung",
+        "model": "MacBook Pro",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",
@@ -23,14 +21,12 @@
       },
       {
         "_id": "664af669adad15716b3e3d0f",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 7"
-        },
-        "category": "Elektronik",
-        "group": "Head Office AU",
-        "brand": "Asus",
-        "model": "ZenBook",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "name": "Kompor",
+        "category": "Transportasi",
+        "group": "Warehouse",
+        "brand": "Hyundai",
+        "model": "Ultra 24",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",
@@ -39,14 +35,13 @@
       },
       {
         "_id": "6653e8762d44195c4382e318",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 8"
-        },
-        "category": "Elektronik",
-        "group": "Head Office A",
-        "brand": "Asus",
-        "model": "ZenBook",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "name": "AC Portable Indoor",
+        "aliasName": "AC Punya pak Kasim",
+        "category": "Sanitasi",
+        "group": "Garage",
+        "brand": "Apple",
+        "model": "Asus",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",
@@ -55,14 +50,12 @@
       },
       {
         "_id": "665d8fbb0b74698b05cb3879",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 9"
-        },
+        "name": "AC Portable Indoor",
         "category": "Elektronik",
-        "group": "Head Office A",
-        "brand": "Asus",
-        "model": "ZenBook",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "group": "Room 402",
+        "brand": "Samsung",
+        "model": "MacBook Pro",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",
@@ -71,14 +64,12 @@
       },
       {
         "_id": "6668feaf253a2c8521dd9cf0",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 10"
-        },
-        "category": "Category new",
-        "group": "Group Utama",
-        "brand": "lmnbv",
-        "model": "wer",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "name": "AC Portable Indoor",
+        "category": "Sanitasi",
+        "group": "Warehouse",
+        "brand": "Hyundai",
+        "model": "Ultra 24",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",
@@ -87,14 +78,13 @@
       },
       {
         "_id": "6668feaf253a2c8521dd9d04",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 11"
-        },
-        "category": "Category new",
-        "group": "Group Utama",
-        "brand": "lmnbv",
-        "model": "wer",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "name": "Wastafel",
+        "aliasName": "Wastafel kasta tertinggi",
+        "category": "Elektronik",
+        "group": "Garage",
+        "brand": "Apple",
+        "model": "MacBook Pro",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",
@@ -102,16 +92,13 @@
         }
       },
       {
-        "_id": "6699edd8ac59ff97700fd98d",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 12",
-          "aliasName": "AC Punya pak Kasim"
-        },
-        "category": "Category new",
-        "group": "All",
-        "brand": "JHG-90",
-        "model": "as",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "_id": "6676a9dbb96b41b1bcdc56a5",
+        "name": "Kompor",
+        "category": "Transportasi",
+        "group": "Room 402",
+        "brand": "Hyundai",
+        "model": "Ultra 24",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",
@@ -119,81 +106,13 @@
         }
       },
       {
-        "_id": "66a4bf930367f41e338d2455",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 13",
-          "aliasName": "AC Portable Indoor"
-        },
-        "category": "Category new",
-        "group": "All",
-        "brand": "JHG-90",
-        "model": "as",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
-        "lastModifier": {
-          "_id": "6454c4253dd1017f28689572",
-          "fullName": "ASDF Tag Samurai V2",
-          "updatedAt": "2021-11-17T07:00:00.000Z"
-        }
-      },
-      {
-        "_id": "66a4bf930367f41e338d2467",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 14"
-        },
-        "category": "Category new",
-        "group": "All",
-        "brand": "JHG-90",
-        "model": "as",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
-        "lastModifier": {
-          "_id": "6454c4253dd1017f28689572",
-          "fullName": "ASDF Tag Samurai V2",
-          "updatedAt": "2021-11-17T07:00:00.000Z"
-        }
-      },
-      {
-        "_id": "66a4c1e92e4816c0a80a2d62",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 15"
-        },
-        "category": "Category new",
-        "group": "All",
-        "brand": "JHG-90",
-        "model": "as",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
-        "lastModifier": {
-          "_id": "6454c4253dd1017f28689572",
-          "fullName": "ASDF Tag Samurai V2",
-          "updatedAt": "2021-11-17T07:00:00.000Z"
-        }
-      },
-      {
-        "_id": "66a4c1e92e4816c0a80a2d622",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 15",
-          "aliasName": "AC Portable Indoor"
-        },
-        "category": "Category new",
-        "group": "All",
-        "brand": "JHG-90",
-        "model": "as",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
-        "lastModifier": {
-          "_id": "6454c4253dd1017f28689572",
-          "fullName": "ASDF Tag Samurai V2",
-          "updatedAt": "2021-11-17T07:00:00.000Z"
-        }
-      },
-      {
-        "_id": "66a4c1e92e4816c0a80a2d623",
-        "name": {
-          "nameWithSequence": "AC Portable Indoor - 15"
-        },
-        "category": "Category new",
-        "group": "All",
-        "brand": "JHG-90",
-        "model": "as",
-        "imageUrl": "https://i5.walmartimages.com/seo/TCL-Home-5-000-BTU-115-Volt-Window-Air-Conditioner-with-Remote-White-W5W31_8303c112-14de-41dc-90a9-b86d973c3df2.c6c49aca9ef156dec3634e7b2a90d964.jpeg",
+        "_id": "668112d1ae9f6a171f20ab72",
+        "name": "Ac Portable Indoor",
+        "category": "Sanitasi",
+        "group": "Garage",
+        "brand": "Apple",
+        "model": "Asus",
+        "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
           "fullName": "ASDF Tag Samurai V2",

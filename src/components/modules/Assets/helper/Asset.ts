@@ -1,9 +1,7 @@
 export interface Asset {
   _id: string;
-  name: {
-    nameWithSequence: string;
-    aliasName?: string;
-  };
+  name: string;
+  aliasName?: string;
   category: string;
   group: string;
   brand: string;
@@ -12,15 +10,13 @@ export interface Asset {
   lastModifier: {
     _id: string;
     fullName: string;
-    updatedAt?: string; // ISO date string
+    updatedAt: string;
   };
 }
-
 export interface AssetList {
   totalRecords: number;
   data: Asset[];
 }
-
 export interface AssetApiResponse {
   status: number;
   message: string;

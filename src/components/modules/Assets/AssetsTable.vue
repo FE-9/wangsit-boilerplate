@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef } from 'vue';
 import { Badge, DataTable } from 'wangsvue';
-
 import {
   FetchResponse,
   QueryParams,
@@ -9,17 +8,17 @@ import {
   TableColumn,
 } from 'wangsvue/components/datatable/DataTable.vue.d';
 
-import response from './data/response.json';
-import router from '@/router';
 import { MenuItem } from 'wangsvue/components/menuitem';
+import router from '@/router';
 
 import { Asset } from './helper/Asset';
 import AssetsForm from './AssetsForm.vue';
 import AssetsHeader from './AssetsHeader.vue';
+import response from './data/response.json';
 
 const showFormRegister = shallowRef<boolean>(false);
-
-const selectedAsset = shallowRef<Asset>();
+const showFormEdit = shallowRef<boolean>(false);
+const selectedAsset = shallowRef<Asset | null>(null);
 
 const singleAction = computed<MenuItem[]>(() => {
   return [
@@ -34,7 +33,7 @@ const singleAction = computed<MenuItem[]>(() => {
       label: 'Edit',
       icon: 'edit',
       command: (): void => {
-        router.push('/edit');
+        showFormEdit.value = true;
       },
     },
   ];
@@ -42,14 +41,14 @@ const singleAction = computed<MenuItem[]>(() => {
 
 const tableColumns: TableColumn[] = [
   {
-    field: 'name.nameWithSequence',
+    field: 'name',
     header: 'Asset',
     sortable: true,
     reorderable: false,
     fixed: true,
   },
   {
-    field: 'group.name',
+    field: 'group',
     header: 'Group',
     sortable: true,
     fixed: true,
@@ -64,7 +63,7 @@ const tableColumns: TableColumn[] = [
     },
   },
   {
-    field: 'category.name',
+    field: 'category',
     header: 'Category',
     sortable: true,
     fixed: true,
@@ -79,7 +78,7 @@ const tableColumns: TableColumn[] = [
     },
   },
   {
-    field: 'brand.name',
+    field: 'brand',
     header: 'Brand',
     sortable: true,
     fixed: true,
@@ -95,7 +94,7 @@ const tableColumns: TableColumn[] = [
     },
   },
   {
-    field: 'model.name',
+    field: 'model',
     header: 'Model/Type',
     sortable: true,
     fixed: true,
@@ -111,7 +110,7 @@ const tableColumns: TableColumn[] = [
     },
   },
   {
-    field: 'name.aliasName',
+    field: 'aliasName',
     header: 'Alias Name',
     sortable: true,
     fixed: true,
@@ -141,10 +140,15 @@ const getTableData = async (
     }, 2); //Simulate delay
   });
 };
+
+const handleShowFormRegister = (): void => {
+  selectedAsset.value = null;
+  showFormRegister.value = true;
+};
 </script>
 
 <template>
-  <AssetsHeader @show-form-register="showFormRegister = true" />
+  <AssetsHeader @show-form-register="handleShowFormRegister" />
   <DataTable
     :columns="tableColumns"
     :fetch-function="getTableData"
@@ -157,5 +161,6 @@ const getTableData = async (
     use-option
     use-paginator
   />
-  <AssetsForm v-model:visible="showFormRegister" />
+  <AssetsForm v-model:visible="showFormRegister" :asset="null" />
+  <AssetsForm v-model:visible="showFormEdit" :asset="selectedAsset" />
 </template>

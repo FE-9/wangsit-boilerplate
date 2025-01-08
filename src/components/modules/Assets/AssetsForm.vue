@@ -1,12 +1,37 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue';
-import { Dropdown, InputText, ImageCompressor, DialogForm } from 'wangsvue';
+import { shallowRef, watch } from 'vue';
+import {
+  Dropdown,
+  InputText,
+  ImageCompressor,
+  DialogForm,
+  useToast,
+} from 'wangsvue';
+
 import { DropdownProps } from 'wangsvue/components/dropdown/Dropdown.vue';
 import { FormValue } from 'wangsvue/components/form/Form.vue.d';
+import { Asset } from './helper/Asset';
+
+const toast = useToast();
+
+const openToast = (message: string, isError?: boolean): void => {
+  toast.add({ message, error: isError, customMessage: false });
+};
 
 const visible = defineModel<boolean>('visible', { default: false });
 
-const formValues = shallowRef<FormValue>();
+const editProps = defineProps<{
+  asset: Asset | null;
+}>();
+
+const formData = shallowRef({
+  group: '',
+  category: '',
+  brand: '',
+  model: '',
+  name: '',
+  aliasName: '',
+});
 
 const DropdownReusableProps: DropdownProps = {
   optionLabel: 'label',
@@ -48,8 +73,46 @@ const apply = (e: {
   formValues: FormValue;
   stayAfterSubmit: boolean;
 }): void => {
-  formValues.value = e.formValues;
+  if (editProps.asset) {
+    try {
+      openToast('Success, asset has been edited', false);
+      console.log('Editing asset:', e.formValues);
+    } catch (error) {
+      openToast('Failed to edit asset', true);
+      console.error('Failed to edit asset:', error);
+    }
+  } else {
+    try {
+      openToast('Success, asset has been registered', false);
+      console.log('Registering new asset:', e.formValues);
+    } catch (error) {
+      openToast('Failed to register asset', true);
+      console.error('Failed to register asset:', error);
+    }
+  }
 };
+
+watch(
+  () => editProps.asset,
+  (newAsset) => {
+    if (newAsset) {
+      formData.value.group = newAsset.group;
+      formData.value.category = newAsset.category;
+      formData.value.brand = newAsset.brand;
+      formData.value.model = newAsset.model;
+      formData.value.name = newAsset.name;
+      formData.value.aliasName = newAsset.aliasName ?? '';
+    } else {
+      formData.value.group = '';
+      formData.value.category = '';
+      formData.value.brand = '';
+      formData.value.model = '';
+      formData.value.name = '';
+      formData.value.aliasName = '';
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -57,12 +120,12 @@ const apply = (e: {
     v-model:visible="visible"
     :buttons-template="['submit', 'cancel', 'clear']"
     :closable="false"
+    :header="editProps.asset ? 'Edit Asset' : 'Register Asset'"
+    :show-stay-checkbox="editProps.asset ? false : true"
     @submit="apply"
     cancel-btn-label="Cancel"
     clear-btn-label="Clear Field"
-    header="Register Asset"
     severity="success"
-    show-stay-checkbox
     stay-checkbox-label="Stay on this form after submitting"
     submit-btn-label="Create"
     width="large"
@@ -71,6 +134,7 @@ const apply = (e: {
       <div class="grid grid-cols-2 gap-4">
         <Dropdown
           v-bind="DropdownReusableProps"
+          :initial-value="formData.group"
           :options="OptionsGroup"
           field-name="group"
           label="Group"
@@ -80,6 +144,7 @@ const apply = (e: {
         />
         <Dropdown
           v-bind="DropdownReusableProps"
+          :initial-value="formData.category"
           :options="OptionsCategory"
           field-name="category"
           label="Category"
@@ -89,6 +154,7 @@ const apply = (e: {
         />
         <Dropdown
           v-bind="DropdownReusableProps"
+          :initial-value="formData.name"
           :options="OptionsName"
           field-name="name"
           label="Name"
@@ -100,6 +166,7 @@ const apply = (e: {
           :validator-message="{
             exceed: 'Max. 30 characters',
           }"
+          :value="formData.aliasName"
           field-info="You can input an alias name for convenience in searching for assets and to differentiate them from others."
           field-name="aliasName"
           label="Alias Name"
@@ -108,6 +175,7 @@ const apply = (e: {
         />
         <Dropdown
           v-bind="DropdownReusableProps"
+          :initial-value="formData.brand"
           :options="OptionsBrand"
           field-name="brand"
           label="Brand"
@@ -117,18 +185,22 @@ const apply = (e: {
         />
         <Dropdown
           v-bind="DropdownReusableProps"
+          :initial-value="formData.model"
           :options="OptionsModelType"
-          field-name="modelType"
+          field-name="model"
           label="Model/Type"
           mandatory
           placeholder="Select model/type"
           validator-message="You must pick a model/type"
         />
-        <ImageCompressor
-          field-name="image"
-          use-validator
-          validator-message="File size too big! Max. 1 MB"
-        />
+        <div class="flex flex-col">
+          <span>Photo</span>
+          <ImageCompressor
+            field-name="imageUrl"
+            use-validator
+            validator-message="File size too big! Max. 1 MB"
+          />
+        </div>
       </div>
     </template>
   </DialogForm>
