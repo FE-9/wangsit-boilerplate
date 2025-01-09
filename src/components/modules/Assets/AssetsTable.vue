@@ -8,46 +8,13 @@ import {
   TableColumn,
 } from 'wangsvue/components/datatable/DataTable.vue.d';
 
-/*
- * TODO: Named import dulu, baru default import
- * Referensi: Coding Style Guide bagian 5.1.2
- */
 import { MenuItem } from 'wangsvue/components/menuitem';
-import router from '@/router';
-
 import { Asset } from './helper/Asset';
+
+import router from '@/router';
 import AssetsForm from './AssetsForm.vue';
 import AssetsHeader from './AssetsHeader.vue';
 import response from './data/response.json';
-
-/*
- * TODO: Perhatiin lagi urutannya, harusnya constant dulu,
- * terus shallowRef, terus computed, terakhir method.
- * Referensi: Coding Style Guide bagian 5.1
- */
-const showFormRegister = shallowRef<boolean>(false);
-const showFormEdit = shallowRef<boolean>(false);
-// TODO: selectedAsset jangan null, undefined aja
-const selectedAsset = shallowRef<Asset | null>(null);
-
-const singleAction = computed<MenuItem[]>(() => {
-  return [
-    {
-      label: 'Detail Asset',
-      icon: 'file-copy-2-line',
-      command: (): void => {
-        router.push(`/${selectedAsset.value?._id}/details-asset`);
-      },
-    },
-    {
-      label: 'Edit',
-      icon: 'edit',
-      command: (): void => {
-        showFormEdit.value = true;
-      },
-    },
-  ];
-});
 
 const tableColumns: TableColumn[] = [
   {
@@ -127,6 +94,28 @@ const tableColumns: TableColumn[] = [
   },
 ];
 
+const showForm = shallowRef<boolean>(false);
+const selectedAsset = shallowRef<Asset | undefined>();
+
+const singleAction = computed<MenuItem[]>(() => {
+  return [
+    {
+      label: 'Detail Asset',
+      icon: 'file-copy-2-line',
+      command: (): void => {
+        router.push(`/${selectedAsset.value?._id}/details-asset`);
+      },
+    },
+    {
+      label: 'Edit',
+      icon: 'edit',
+      command: (): void => {
+        showForm.value = true;
+      },
+    },
+  ];
+});
+
 const getTableData = async (
   params: QueryParams,
 ): Promise<FetchResponse | undefined> => {
@@ -152,8 +141,8 @@ const getTableData = async (
 };
 
 const handleShowFormRegister = (): void => {
-  selectedAsset.value = null;
-  showFormRegister.value = true;
+  selectedAsset.value = undefined;
+  showForm.value = true;
 };
 </script>
 
@@ -171,8 +160,5 @@ const handleShowFormRegister = (): void => {
     use-option
     use-paginator
   />
-  <!-- TODO: AssetsForm dipake sekali aja, kan pas handleShowFormRegister,
-   selectedAsset diset jadi undefined. Jadi AssetsForm pertama dihapus. -->
-  <AssetsForm v-model:visible="showFormRegister" :asset="null" />
-  <AssetsForm v-model:visible="showFormEdit" :asset="selectedAsset" />
+  <AssetsForm v-model:visible="showForm" :asset="selectedAsset" />
 </template>

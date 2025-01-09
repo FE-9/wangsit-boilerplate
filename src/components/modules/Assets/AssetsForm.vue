@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { shallowRef, watch } from 'vue';
 import {
   Dropdown,
   InputText,
@@ -20,22 +19,9 @@ const openToast = (message: string, isError?: boolean): void => {
 
 const visible = defineModel<boolean>('visible', { default: false });
 
-const editProps = defineProps<{
-  asset: Asset | null;
+defineProps<{
+  asset: Asset | undefined;
 }>();
-
-/*
- * TODO: Enggak perlu pake formData, initialValue tiap dropdown
- * langsung aja pake props
- */
-const formData = shallowRef({
-  group: '',
-  category: '',
-  brand: '',
-  model: '',
-  name: '',
-  aliasName: '',
-});
 
 const DropdownReusableProps: DropdownProps = {
   optionLabel: 'label',
@@ -95,29 +81,6 @@ const apply = (e: {
     }
   }
 };
-
-// TODO: Hapus aja watch ini
-watch(
-  () => editProps.asset,
-  (newAsset) => {
-    if (newAsset) {
-      formData.value.group = newAsset.group;
-      formData.value.category = newAsset.category;
-      formData.value.brand = newAsset.brand;
-      formData.value.model = newAsset.model;
-      formData.value.name = newAsset.name;
-      formData.value.aliasName = newAsset.aliasName ?? '';
-    } else {
-      formData.value.group = '';
-      formData.value.category = '';
-      formData.value.brand = '';
-      formData.value.model = '';
-      formData.value.name = '';
-      formData.value.aliasName = '';
-    }
-  },
-  { immediate: true },
-);
 </script>
 
 <template>
@@ -125,8 +88,8 @@ watch(
     v-model:visible="visible"
     :buttons-template="['submit', 'cancel', 'clear']"
     :closable="false"
-    :header="editProps.asset ? 'Edit Asset' : 'Register Asset'"
-    :show-stay-checkbox="editProps.asset ? false : true"
+    :header="asset ? 'Edit Asset' : 'Register Asset'"
+    :show-stay-checkbox="asset ? false : true"
     @submit="apply"
     cancel-btn-label="Cancel"
     clear-btn-label="Clear Field"
@@ -139,7 +102,7 @@ watch(
       <div class="grid grid-cols-2 gap-4">
         <Dropdown
           v-bind="DropdownReusableProps"
-          :initial-value="formData.group"
+          :initial-value="asset?.group"
           :options="OptionsGroup"
           field-name="group"
           label="Group"
@@ -147,11 +110,9 @@ watch(
           placeholder="Select group"
           validator-message="You must pick a group"
         />
-        <!-- TODO: Ganti jadi `:initial-value="asset?.category"`
-         (sama aja kayak `:initial-value="$props.asset?.category`) -->
         <Dropdown
           v-bind="DropdownReusableProps"
-          :initial-value="formData.category"
+          :initial-value="asset?.category"
           :options="OptionsCategory"
           field-name="category"
           label="Category"
@@ -161,7 +122,7 @@ watch(
         />
         <Dropdown
           v-bind="DropdownReusableProps"
-          :initial-value="formData.name"
+          :initial-value="asset?.name"
           :options="OptionsName"
           field-name="name"
           label="Name"
@@ -173,7 +134,7 @@ watch(
           :validator-message="{
             exceed: 'Max. 30 characters',
           }"
-          :value="formData.aliasName"
+          :value="asset?.aliasName"
           field-info="You can input an alias name for convenience in searching for assets and to differentiate them from others."
           field-name="aliasName"
           label="Alias Name"
@@ -182,7 +143,7 @@ watch(
         />
         <Dropdown
           v-bind="DropdownReusableProps"
-          :initial-value="formData.brand"
+          :initial-value="asset?.brand"
           :options="OptionsBrand"
           field-name="brand"
           label="Brand"
@@ -192,7 +153,7 @@ watch(
         />
         <Dropdown
           v-bind="DropdownReusableProps"
-          :initial-value="formData.model"
+          :initial-value="asset?.model"
           :options="OptionsModelType"
           field-name="model"
           label="Model/Type"
