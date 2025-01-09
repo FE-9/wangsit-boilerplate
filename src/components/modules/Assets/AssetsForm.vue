@@ -9,19 +9,15 @@ import {
 
 import { DropdownProps } from 'wangsvue/components/dropdown/Dropdown.vue';
 import { FormValue } from 'wangsvue/components/form/Form.vue.d';
-import { Asset } from './helper/Asset';
-
-const toast = useToast();
-
-const openToast = (message: string, isError?: boolean): void => {
-  toast.add({ message, error: isError, customMessage: false });
-};
+import { Asset } from '../../../types/asset.type';
 
 const visible = defineModel<boolean>('visible', { default: false });
 
-defineProps<{
+const editProps = defineProps<{
   asset: Asset | undefined;
 }>();
+
+const toast = useToast();
 
 const DropdownReusableProps: DropdownProps = {
   optionLabel: 'label',
@@ -58,6 +54,10 @@ const OptionsName = [
   { label: 'Kompor', value: 'Kompor' },
   { label: 'Wastafel', value: 'Wastafel' },
 ];
+
+const openToast = (message: string, isError?: boolean): void => {
+  toast.add({ message, error: isError, customMessage: false });
+};
 
 const apply = (e: {
   formValues: FormValue;
@@ -164,6 +164,7 @@ const apply = (e: {
         <div class="flex flex-col">
           <span>Photo</span>
           <ImageCompressor
+            :image-preview-url="asset?.imageUrl"
             field-name="imageUrl"
             use-validator
             validator-message="File size too big! Max. 1 MB"

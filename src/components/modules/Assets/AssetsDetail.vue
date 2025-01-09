@@ -1,32 +1,31 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue';
+import { shallowRef, onMounted, computed } from 'vue';
 import { RouteParamsGeneric, useRoute } from 'vue-router';
 import { Image } from 'wangsvue';
-import { AssetList, Asset } from './helper/Asset';
+import { AssetList, Asset } from '../../../types/asset.type';
 import response from './data/response.json';
 
 onMounted(() => {
-  item.value = data.find((obj) => obj._id === id) || null;
+  item.value = data.find((obj) => obj._id === id);
 });
 
 const route = useRoute();
 
-/*
- * TODO: `item` pake shallowRef, karena properti dalam `item` gak akan berubah,
- * tapi `item` itu sendiri yang diubah.
- *
- * Dan juga, jangan pake null, pake undefined aja, berarti `item` itu belum ada value.
- * Kalau null itu berarti `item` punya value null. Nanti pas refer ke `item`,
- * ditambahin optional chaining (misalnya item?.group).
- */
-const item = ref<Asset | null>(null);
+const { id }: RouteParamsGeneric = route.params;
+const { data }: AssetList = response.data;
+
+const fields = [
+  { label: 'Brand', key: 'brand' },
+  { label: 'Category', key: 'category' },
+  { label: 'Model/Type', key: 'model' },
+  { label: 'Group', key: 'group' },
+];
+
+const item = shallowRef<Asset | undefined>();
 
 const formattedDate = computed(() => {
   return item.value ? formatISODate(item.value.lastModifier.updatedAt) : '';
 });
-
-const { id }: RouteParamsGeneric = route.params;
-const { data }: AssetList = response.data;
 
 const formatISODate = (date: string | Date): string =>
   new Date(date).toLocaleString('sv');
@@ -35,10 +34,10 @@ const formatISODate = (date: string | Date): string =>
 <template>
   <div v-if="item">
     <div class="flex justify-between items-start mb-4">
-      <span class="text-base font-bold">{{ item.name }}</span>
+      <span id="name" class="text-base font-bold">{{ item.name }}</span>
       <div class="flex flex-col items-end text-xs">
         <span class="text-gray-500 text-[9px]">Last Modified</span>
-        <div class="font-medium text-xs">
+        <div id="lastModifier" class="font-medium text-xs">
           {{ formattedDate }} by {{ item.lastModifier.fullName }}
         </div>
       </div>
@@ -46,35 +45,24 @@ const formatISODate = (date: string | Date): string =>
 
     <div class="grid grid-cols-[125px,1fr] gap-6">
       <div class="w-[125px] h-[125px] rounded-lg">
-        <Image :thumbnail="item.imageUrl" class="w-full h-full object-cover" />
+        <Image
+          id="image"
+          :thumbnail="item.imageUrl"
+          class="w-full h-full object-cover"
+        />
       </div>
 
       <div>
         <span class="font-bold text-xs">General Information</span>
         <div class="grid grid-cols-2 auto-cols-auto w-max">
-          <!-- TODO: Ini kan pake div berulang-ulang, pake v-for aja, yang
-           loop propreti dalam objek `item`.
-           Biar cuma di div pertama yang ada class mr-28, pake kayak gini:
-           :class="{ 'mr-28': index === 0 }" -->
-          <div class="mr-28">
-            <div class="flex flex-col">
-              <span class="text-gray-500 text-[9px]">Brand</span>
-              <span class="font-medium text-xs">{{ item.brand }}</span>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-gray-500 text-[9px]">Category</span>
-              <span class="font-medium text-xs">{{ item.category }}</span>
-            </div>
-          </div>
-          <div>
-            <div class="flex flex-col">
-              <span class="text-gray-500 text-[9px]">Model/Type</span>
-              <span class="font-medium text-xs">{{ item.model }}</span>
-            </div>
-            <div class="flex flex-col">
-              <span class="text-gray-500 text-[9px]">Group</span>
-              <span class="font-medium text-xs">{{ item.group }}</span>
-            </div>
+          <div
+            :key="field.key"
+            v-for="(field, index) in fields"
+            :class="{ 'mr-28': index === 0 }"
+            class="flex flex-col"
+          >
+            <span class="text-gray-500 text-[9px]">{{ field.label }}</span>
+            <span class="font-medium text-xs">{{ item[field.key] }}</span>
           </div>
         </div>
       </div>

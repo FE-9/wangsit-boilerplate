@@ -9,7 +9,7 @@ import {
 } from 'wangsvue/components/datatable/DataTable.vue.d';
 
 import { MenuItem } from 'wangsvue/components/menuitem';
-import { Asset } from './helper/Asset';
+import { Asset } from '../../../types/asset.type';
 
 import router from '@/router';
 import AssetsForm from './AssetsForm.vue';
@@ -96,6 +96,7 @@ const tableColumns: TableColumn[] = [
 
 const showForm = shallowRef<boolean>(false);
 const selectedAsset = shallowRef<Asset | undefined>();
+const simulateError = shallowRef<boolean>(false);
 
 const singleAction = computed<MenuItem[]>(() => {
   return [
@@ -119,25 +120,35 @@ const singleAction = computed<MenuItem[]>(() => {
 const getTableData = async (
   params: QueryParams,
 ): Promise<FetchResponse | undefined> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      const startIndex = ((params.page || 1) - 1) * (params.limit || 10);
-      const endIndex = startIndex + (params.limit || 10);
+  try {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (simulateError.value) {
+          reject(new Error('Failed to fetch data'));
+          return;
+        }
 
-      const data =
-        params.page !== null && params.limit !== null
-          ? response.data.data.slice(startIndex, endIndex)
-          : response.data.data;
+        const startIndex = ((params.page || 1) - 1) * (params.limit || 10);
+        const endIndex = startIndex + (params.limit || 10);
 
-      resolve({
-        message: '',
-        data: {
-          data, // Use 'slice' for data limiting
-          totalRecords: response.data.totalRecords,
-        },
-      });
-    }, 2); //Simulate delay
-  });
+        const data: Asset[] =
+          params.page !== null && params.limit !== null
+            ? response.data.data.slice(startIndex, endIndex)
+            : response.data.data;
+
+        resolve({
+          message: '',
+          data: {
+            data,
+            totalRecords: response.data.totalRecords,
+          },
+        });
+      }, 1000); // Simulate delay
+    });
+  } catch (error: unknown) {
+    console.error('Failed to fetch data:', error);
+    return undefined;
+  }
 };
 
 const handleShowFormRegister = (): void => {

@@ -11,6 +11,11 @@ declare namespace Cypress {
      * Custom command to select DOM element by data-wv-section attribute.
      * @example cy.getSection('title')
      */
+    getPcSection(value: string): Chainable<Element>;
+    /**
+     * Custom command to select DOM element by data-pc-section attribute.
+     * @example cy.getPcSection('title')
+     */
     getSection(value: string): Chainable<Element>;
     /**
      * Custom command to select DOM element by data-wv-name attribute.

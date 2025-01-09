@@ -2,6 +2,10 @@ Cypress.Commands.add('getSection', (section) => {
   cy.get(`[data-wv-section="${section}"]`);
 });
 
+Cypress.Commands.add('getPcSection', (section) => {
+  cy.get(`[data-pc-section="${section}"]`);
+});
+
 Cypress.Commands.add('getByName', (name) => {
   cy.get(`[data-wv-name="${name}"]`);
 });

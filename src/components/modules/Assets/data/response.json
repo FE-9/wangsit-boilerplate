@@ -2,7 +2,7 @@
   "status": 200,
   "message": "Success get Asset Policy!!!",
   "data": {
-    "totalRecords": 8,
+    "totalRecords": 12,
     "data": [
       {
         "_id": "663ce742f0667d5266d83d66",
@@ -55,6 +55,63 @@
         "group": "Room 402",
         "brand": "Samsung",
         "model": "MacBook Pro",
+        "imageUrl": "https://placehold.co/600x400",
+        "lastModifier": {
+          "_id": "6454c4253dd1017f28689572",
+          "fullName": "ASDF Tag Samurai V2",
+          "updatedAt": "2021-11-17T07:00:00.000Z"
+        }
+      },
+      {
+        "_id": "6668feaf253a2c8521dd9cf0",
+        "name": "AC Portable Indoor",
+        "category": "Sanitasi",
+        "group": "Warehouse",
+        "brand": "Hyundai",
+        "model": "Ultra 24",
+        "imageUrl": "https://placehold.co/600x400",
+        "lastModifier": {
+          "_id": "6454c4253dd1017f28689572",
+          "fullName": "ASDF Tag Samurai V2",
+          "updatedAt": "2021-11-17T07:00:00.000Z"
+        }
+      },
+      {
+        "_id": "6668feaf253a2c8521dd9d04",
+        "name": "Wastafel",
+        "aliasName": "Wastafel kasta tertinggi",
+        "category": "Elektronik",
+        "group": "Garage",
+        "brand": "Apple",
+        "model": "MacBook Pro",
+        "imageUrl": "https://placehold.co/600x400",
+        "lastModifier": {
+          "_id": "6454c4253dd1017f28689572",
+          "fullName": "ASDF Tag Samurai V2",
+          "updatedAt": "2021-11-17T07:00:00.000Z"
+        }
+      },
+      {
+        "_id": "6676a9dbb96b41b1bcdc56a5",
+        "name": "Kompor",
+        "category": "Transportasi",
+        "group": "Room 402",
+        "brand": "Hyundai",
+        "model": "Ultra 24",
+        "imageUrl": "https://placehold.co/600x400",
+        "lastModifier": {
+          "_id": "6454c4253dd1017f28689572",
+          "fullName": "ASDF Tag Samurai V2",
+          "updatedAt": "2021-11-17T07:00:00.000Z"
+        }
+      },
+      {
+        "_id": "668112d1ae9f6a171f20ab72",
+        "name": "Ac Portable Indoor",
+        "category": "Sanitasi",
+        "group": "Garage",
+        "brand": "Apple",
+        "model": "Asus",
         "imageUrl": "https://placehold.co/600x400",
         "lastModifier": {
           "_id": "6454c4253dd1017f28689572",
