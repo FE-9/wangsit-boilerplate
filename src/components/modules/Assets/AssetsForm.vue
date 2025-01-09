@@ -24,6 +24,10 @@ const editProps = defineProps<{
   asset: Asset | null;
 }>();
 
+/*
+ * TODO: Enggak perlu pake formData, initialValue tiap dropdown
+ * langsung aja pake props
+ */
 const formData = shallowRef({
   group: '',
   category: '',
@@ -92,6 +96,7 @@ const apply = (e: {
   }
 };
 
+// TODO: Hapus aja watch ini
 watch(
   () => editProps.asset,
   (newAsset) => {
@@ -142,6 +147,8 @@ watch(
           placeholder="Select group"
           validator-message="You must pick a group"
         />
+        <!-- TODO: Ganti jadi `:initial-value="asset?.category"`
+         (sama aja kayak `:initial-value="$props.asset?.category`) -->
         <Dropdown
           v-bind="DropdownReusableProps"
           :initial-value="formData.category"

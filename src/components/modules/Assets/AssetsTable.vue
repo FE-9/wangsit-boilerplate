@@ -8,6 +8,10 @@ import {
   TableColumn,
 } from 'wangsvue/components/datatable/DataTable.vue.d';
 
+/*
+ * TODO: Named import dulu, baru default import
+ * Referensi: Coding Style Guide bagian 5.1.2
+ */
 import { MenuItem } from 'wangsvue/components/menuitem';
 import router from '@/router';
 
@@ -16,8 +20,14 @@ import AssetsForm from './AssetsForm.vue';
 import AssetsHeader from './AssetsHeader.vue';
 import response from './data/response.json';
 
+/*
+ * TODO: Perhatiin lagi urutannya, harusnya constant dulu,
+ * terus shallowRef, terus computed, terakhir method.
+ * Referensi: Coding Style Guide bagian 5.1
+ */
 const showFormRegister = shallowRef<boolean>(false);
 const showFormEdit = shallowRef<boolean>(false);
+// TODO: selectedAsset jangan null, undefined aja
 const selectedAsset = shallowRef<Asset | null>(null);
 
 const singleAction = computed<MenuItem[]>(() => {
@@ -161,6 +171,8 @@ const handleShowFormRegister = (): void => {
     use-option
     use-paginator
   />
+  <!-- TODO: AssetsForm dipake sekali aja, kan pas handleShowFormRegister,
+   selectedAsset diset jadi undefined. Jadi AssetsForm pertama dihapus. -->
   <AssetsForm v-model:visible="showFormRegister" :asset="null" />
   <AssetsForm v-model:visible="showFormEdit" :asset="selectedAsset" />
 </template>
