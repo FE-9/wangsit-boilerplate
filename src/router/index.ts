@@ -30,6 +30,11 @@ const routes: Readonly<RouteRecordRaw[]> = [
       },
     ],
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: (): Promise<Component> => import('@/views/LoginView.vue'),
+  },
 ];
 
 const router = createRouter({

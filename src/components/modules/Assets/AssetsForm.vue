@@ -8,6 +8,7 @@ import {
 } from 'wangsvue';
 
 import { DropdownProps } from 'wangsvue/components/dropdown/Dropdown.vue';
+import { DropdownOption } from 'wangsvue/types/options.type';
 import { FormValue } from 'wangsvue/components/form/Form.vue.d';
 import { Asset } from '../../../types/asset.type';
 
@@ -25,35 +26,31 @@ const DropdownReusableProps: DropdownProps = {
   useValidator: true,
 };
 
-/*
- * TODO: Semua constant di bawah ini ditambah type
- * DropdownOptions (import dari wangsvue)
- */
-const OptionsGroup = [
+const OptionsGroup: DropdownOption[] = [
   { label: 'Room 402', value: 'Room 402' },
   { label: 'Warehouse', value: 'Warehouse' },
   { label: 'Garage', value: 'Garage' },
 ];
 
-const OptionsCategory = [
+const OptionsCategory: DropdownOption[] = [
   { label: 'Elektronik', value: 'Elektronik' },
   { label: 'Transportasi', value: 'Transportasi' },
   { label: 'Sanitasi', value: 'Sanitasi' },
 ];
 
-const OptionsBrand = [
+const OptionsBrand: DropdownOption[] = [
   { label: 'Samsung', value: 'Samsung' },
   { label: 'Hyundai', value: 'Hyundai' },
   { label: 'Apple', value: 'Apple' },
 ];
 
-const OptionsModelType = [
+const OptionsModelType: DropdownOption[] = [
   { label: 'MacBook Pro', value: 'MacBook Pro' },
   { label: 'Asus', value: 'Asus' },
   { label: 'Ultra 24', value: 'Ultra 24' },
 ];
 
-const OptionsName = [
+const OptionsName: DropdownOption = [
   { label: 'Ac Portable Indoor', value: 'Ac Portable Indoor' },
   { label: 'Kompor', value: 'Kompor' },
   { label: 'Wastafel', value: 'Wastafel' },
