@@ -9,7 +9,7 @@ onMounted(() => {
 const { setBreadcrumbs } = useBreadcrumbStore();
 const menus = [
   {
-    name: 'Asset Detail',
+    name: 'Asset Details',
   },
 ];
 </script>

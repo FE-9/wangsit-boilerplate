@@ -1,12 +1,14 @@
-import AssetDetail from './AssetsDetail.vue';
-
-describe('AssetDetail', () => {
+describe('/details-asset', () => {
   beforeEach(() => {
-    cy.mount(AssetDetail); // Find out how to inject id routes params with cypress
+    cy.visit('/663ce742f0667d5266d83d66/details-asset');
+  });
+
+  it('should have correct title', () => {
+    cy.contains('Asset Details');
   });
 
   it('should render correctly when an asset is found', () => {
-    cy.get('#name').should('contain', 'Ac Portable Indoor');
+    cy.get('#name').should('contain', 'AC Portable Indoor');
     cy.get('#lastModifier').should('contain', 'ASDF Tag Samurai V2');
     cy.get('#lastModifier').should('contain', '2021-11-17 14:00:00');
     cy.contains('Brand')
@@ -20,7 +22,7 @@ describe('AssetDetail', () => {
     cy.contains('Model/Type')
       .parent()
       .find('.font-medium.text-xs')
-      .should('contain', 'Ultra 24');
+      .should('contain', 'MacBook Pro');
     cy.contains('Group')
       .parent()
       .find('.font-medium.text-xs')
@@ -28,12 +30,7 @@ describe('AssetDetail', () => {
   });
 
   it('should display "Item not found" when no asset is found', () => {
-    cy.mount(AssetDetail, {
-      props: {
-        id: 'nonexistent-id',
-      },
-    });
-
+    cy.visit('/id-ngaco/details-asset');
     cy.get('.p-4.text-gray-500').should('contain', 'Item not found.');
   });
 });

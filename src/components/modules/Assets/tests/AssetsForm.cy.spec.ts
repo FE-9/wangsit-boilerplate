@@ -1,4 +1,4 @@
-import AssetForm from './AssetsForm.vue';
+import AssetsForm from '../AssetsForm.vue';
 
 describe('AssetForm', () => {
   beforeEach(() => {
@@ -6,7 +6,7 @@ describe('AssetForm', () => {
   });
 
   it('should be visible when the visible prop is true', () => {
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: true,
         asset: undefined,
@@ -16,7 +16,7 @@ describe('AssetForm', () => {
   });
 
   it('should not be visible when the visible prop is false', () => {
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: false,
         asset: undefined,
@@ -35,7 +35,7 @@ describe('AssetForm', () => {
       model: 'Ultra 24',
       imageUrl: 'https://placehold.co/600x400',
     };
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: true,
         asset,
@@ -54,7 +54,7 @@ describe('AssetForm', () => {
   });
 
   it('should initialize form fields as empty when registering a new asset', () => {
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: true,
         asset: undefined,
@@ -70,7 +70,7 @@ describe('AssetForm', () => {
   });
 
   it('should validate mandatory fields', () => {
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: true,
         asset: undefined,
@@ -88,8 +88,35 @@ describe('AssetForm', () => {
     cy.contains('Max. 30 characters');
   });
 
+  it('should clear form fields when clear fields is clicked', () => {
+    cy.mount(AssetsForm, {
+      props: {
+        visible: true,
+        asset: undefined,
+      },
+    });
+    cy.get('input[placeholder="Enter alias name"').type('New Alias');
+    cy.get('div[fieldname="group"').click();
+    cy.contains('Room 402').click();
+    cy.get('div[fieldname="category"').click();
+    cy.contains('Elektronik').click();
+    cy.get('div[fieldname="name"').click();
+    cy.contains('Kompor').click();
+    cy.get('div[fieldname="brand').click();
+    cy.contains('Samsung').click();
+    cy.get('div[fieldname="model').click();
+    cy.contains('Ultra 24').click();
+    cy.get('button').contains('Clear Field').click();
+    cy.get('input[placeholder="Enter alias name"').should('have.value', '');
+    cy.get('div[fieldname="name"').should('have.text', 'Select name');
+    cy.get('div[fieldname="group"').should('have.text', 'Select group');
+    cy.get('div[fieldname="brand"').should('have.text', 'Select brand');
+    cy.get('div[fieldname="model"').should('have.text', 'Select model/type');
+    cy.get('div[fieldname="category"').should('have.text', 'Select category');
+  });
+
   it('should submit the form correctly when registering a new asset', () => {
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: true,
         asset: undefined,
@@ -117,10 +144,7 @@ describe('AssetForm', () => {
       cy.contains('Ultra 24').click();
     });
     cy.get('button').contains('Create').click();
-    cy.get('[data-pc-section="message"]').should(
-      'contain',
-      'Success, asset has been registered', // Why toast component is duplicated in the DOM?
-    );
+    cy.getSection('dialog-form').should('not.exist');
   });
 
   it('should submit the form correctly when editing an existing asset', () => {
@@ -133,7 +157,7 @@ describe('AssetForm', () => {
       model: 'Ultra 24',
       imageUrl: 'path/to/image.jpg',
     };
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: true,
         asset,
@@ -142,14 +166,11 @@ describe('AssetForm', () => {
     cy.get('input[placeholder="Enter alias name"').clear();
     cy.get('input[placeholder="Enter alias name"').type('Updated Alias');
     cy.get('button').contains('Create').click();
-    cy.get('[data-pc-section="message"]').should(
-      'contain',
-      'Success, asset has been edited', // Why toast component is duplicated in the DOM?
-    );
+    cy.getSection('dialog-form').should('not.exist');
   });
 
   it('should have correct form buttons', () => {
-    cy.mount(AssetForm, {
+    cy.mount(AssetsForm, {
       props: {
         visible: true,
         asset: undefined,

@@ -1,4 +1,4 @@
-import AssetTable from './AssetsTable.vue';
+import AssetTable from '../AssetsTable.vue';
 describe('AssetTable', () => {
   beforeEach(() => {
     cy.viewport(1280, 680);
@@ -37,7 +37,7 @@ describe('AssetTable', () => {
     });
 
     /*
-     * (Skipped this test to find the correct way to handle error case)
+     * (Skipped this test since right now we doesn't have a way to destroy the data fetched)
      * It('should correctly handle error case fetch table data', () => {
      *   cy.get('[data-cy=my-component]').then((componentWrapper) => {
      *     const vm = componentWrapper.__vue__;

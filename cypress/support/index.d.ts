@@ -8,13 +8,13 @@ declare namespace Cypress {
      */
     mount(component: any, options?: any): Chainable;
     /**
-     * Custom command to select DOM element by data-wv-section attribute.
-     * @example cy.getSection('title')
+     * Custom command to select DOM element by data-pc-section attribute.
+     * @example cy.getPcSection('title')
      */
     getPcSection(value: string): Chainable<Element>;
     /**
-     * Custom command to select DOM element by data-pc-section attribute.
-     * @example cy.getPcSection('title')
+     * Custom command to select DOM element by data-wv-section attribute.
+     * @example cy.getSection('title')
      */
     getSection(value: string): Chainable<Element>;
     /**
