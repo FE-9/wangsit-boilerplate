@@ -14,6 +14,10 @@ const route = useRoute();
 const { id }: RouteParamsGeneric = route.params;
 const { data }: AssetList = response.data;
 
+/*
+ * TODO: Constant ini ditambah type
+ * Hint: `key: keyof Asset`
+ */
 const fields = [
   { label: 'Brand', key: 'brand' },
   { label: 'Category', key: 'category' },

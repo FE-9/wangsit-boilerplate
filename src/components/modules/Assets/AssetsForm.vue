@@ -25,6 +25,10 @@ const DropdownReusableProps: DropdownProps = {
   useValidator: true,
 };
 
+/*
+ * TODO: Semua constant di bawah ini ditambah type
+ * DropdownOptions (import dari wangsvue)
+ */
 const OptionsGroup = [
   { label: 'Room 402', value: 'Room 402' },
   { label: 'Warehouse', value: 'Warehouse' },
